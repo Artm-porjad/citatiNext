@@ -1,0 +1,25 @@
+version: '3.2'
+
+networks:
+  next-citati:
+    external: true
+
+services:
+  notifier:
+    build:
+      context: .
+      dockerfile: system/docker/notifier/Dockerfile
+    container_name: next-citati-notifier
+    networks:
+      - next-citati
+
+
+  postgresql:
+    image: test/postgresql
+    build:
+      context: .
+      dockerfile: system/docker/postgres/Dockerfile
+    container_name: next-citati-postgresql
+    command: postgres
+    networks:
+      - next-citati
