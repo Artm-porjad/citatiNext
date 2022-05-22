@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from starlette.endpoints import HTTPEndpoint
 from starlette.responses import JSONResponse
@@ -8,8 +8,7 @@ from sqlalchemy import select
 
 from common.database.models.dbconnector import database as session
 from common.database.models.dbmodels import accounts, quotes
-from utils import JsonParams\
-    # , send_by_email_after_registration
+from utils import JsonParams, send_by_email_after_registration, QueryParams
 
 
 class LogIn(HTTPEndpoint):
@@ -25,7 +24,7 @@ class LogIn(HTTPEndpoint):
                 if account_check and password_check:
                     username = await session.fetch_one(accounts.select().where(accounts.c.email == email))
                     username = username["username"]
-                    response = JSONResponse()
+                    response = Response()
                     try:
                         query = accounts.update().values(expired=datetime.now()).where(accounts.c.username == username)
                         await session.execute(query)
@@ -50,7 +49,7 @@ class Register(HTTPEndpoint):
             username = params['username']
             email = params['email']
         try:
-            # await send_by_email_after_registration(email)
+            await send_by_email_after_registration(email)
             try:
                 query = accounts.insert().values(
                     password=password,
@@ -93,13 +92,18 @@ async def check_user(request):
 @requires('authenticated')
 async def exit(request):
     response = Response(status_code=200)
+    try:
+        query = accounts.update().values(expired=datetime.now()-timedelta(seconds=300)).where(accounts.c.username == request.user.display_name)
+        await session.execute(query)
+    except Exception as e:
+        print(e.args)
+        return Response(b'Unexpected error', status_code=410)
     response.delete_cookie("auth")
     return response
 
 
 async def user_info_construct(request):
-    async with JsonParams(request) as params:
-        username = params['username']
+    username = request.query_params['username']
     email = await session.fetch_one(accounts.select().where(accounts.c.username == username))
     user_data = {
         "username": username,
@@ -113,4 +117,4 @@ async def user_info_construct(request):
         }
         for quote in users_quotes_list
     ]
-    return JSONResponse([user_data, user_quotes])
+    return JSONResponse({"user_data":user_data, "user_quotes":user_quotes})

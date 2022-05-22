@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 
-const fetcher = async (uri: string, params: Record<string, never>) => {
+export const fetcher = async (uri: string, params: Record<string, never>) => {
   const searchParams = new URLSearchParams(params);
   const res = await window.fetch(`${uri}?${searchParams}`);
   if (res.ok) {

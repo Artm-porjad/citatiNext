@@ -30,7 +30,7 @@ const DesktopMenu: FC<{
   const matchedPath = (path: string, exactly = false) =>
     exactly ? path === router.asPath : (path !== '/' && router.asPath.startsWith(path)) || path === router.asPath;
   return (
-    <div className="neutral filled !bg-opacity-30">
+    <div className="">
       <Container className="py-2 text-sm font-medium flex flex-row justify-end gap-3">
         {userMenu.map(({ path, label }, index) => (
           <Link href={path} passHref key={index}>

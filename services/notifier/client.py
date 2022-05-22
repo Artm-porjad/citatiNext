@@ -42,10 +42,7 @@ if __name__ == "__main__":
         a = notifier.client.NotificationClient(port=9900, host='localhost')
         # await a.send_by_email_after_registration("artm-porjad@mail.ru")
 
-        await a.send_without_template("AxeCooperChannel", "artm-porjad@mail.ru",
-                                      "check.email.sending01@gmail.com", "AxeCooperChat",
-                                      subject='example subject',
-                                      text='no template text')
+        await a.send_by_email_after_registration("artm-porjad@mail.ru")
 
 
     asyncio.run(run_all())

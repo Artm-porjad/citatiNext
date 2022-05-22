@@ -1,14 +1,14 @@
 from setuptools import setup, find_namespace_packages
 
 settings = {
-    'name': 'ClownEntertainment-Common',
-    'description': 'ClownEntertainment common',
+    'name': 'Citati-Common',
+    'description': 'Citatki common',
     'zip_safe': False,
     'include_package_data': True,
     'packages': find_namespace_packages(include=('.*',)),
     'entry_points': {
         'console_scripts': [
-            'website = clownentertainment.website:main'
+            'website = citati.website:main'
         ],
     },
     'install_requires': [

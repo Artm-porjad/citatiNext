@@ -24,15 +24,19 @@ const CommentForm: FC<CommentFormProps> = ({ className }) => {
   };
 
   return (
-    <div className="flex h-full items-center justify-center w-1/2">
+    <div className="px-16">
       <form onSubmit={handleSubmit(onSubmit)} className={className}>
-        <div className="grid grid-flow-row auto-rows-max">
-          <p>
-            <b>Комментарий</b>
-          </p>
-          <input type="text" {...register('Text', { required: true })} className="border-2 border-slate-400" />
-          <button type="submit" className="text-2xl border-2 border-slate-400 border-double">
-            Закоментить
+        <div className="grid grid-flow-row auto-rows-max gap-4">
+          <input
+            type="text"
+            {...register('Text', { required: true })}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+          <button
+            className="neutral on_surface text-white hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+            type="submit"
+          >
+            Comment
           </button>
         </div>
       </form>

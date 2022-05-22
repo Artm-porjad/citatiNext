@@ -43,7 +43,7 @@ class NotifierServer():
         self.fm = FastMail(self.conf)
 
     async def mailing(self, task_message):
-        logging.info(task_message)
+        print(task_message)
         message = MessageSchema(
             subject='Вы зарегистрированы',
             recipients=task_message,
@@ -55,8 +55,8 @@ class NotifierServer():
         while True:
             try:
                 msg = await self.socket.recv()
-                await self.socket.send(b'')
                 await self.mailing(json.loads(msg.decode('utf-8')))
+                await self.socket.send(b'')
             except KeyboardInterrupt:
                 await self.socket.send(b'Message not received')
                 break

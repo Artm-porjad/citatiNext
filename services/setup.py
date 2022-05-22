@@ -1,8 +1,8 @@
 from setuptools import setup, find_namespace_packages
 
 settings = {
-    'name': 'ClownEnterteinment-Common',
-    'description': 'ClownEnterteinment common',
+    'name': 'Citati-Common',
+    'description': 'Citati common',
     'zip_safe': False,
     'include_package_data': True,
     'packages': find_namespace_packages(include=('.*',)),

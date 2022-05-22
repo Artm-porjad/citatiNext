@@ -6,8 +6,8 @@ type OnlineType = {
 
 const Online: FC<OnlineType> = ({ username }) => {
   return (
-    <div>
-      <div className="UserInfo-name">{username}</div>
+    <div className="flex items-center justify-center neutral filled odd:bg-opacity-25 py-1">
+      <a href={'/profile/' + username} className="w-auto font-normal text-base hover:bg-gray-300">{username}</a>
     </div>
   );
 };

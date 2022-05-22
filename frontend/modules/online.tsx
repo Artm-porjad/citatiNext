@@ -6,12 +6,13 @@ export type OnlineTypes = {
 
 /// Comments data adapter
 export function OnlineAdapter(data: DataSet<OnlineTypes>): OnlineTypes[] {
-  return data.comments.map(([username]) => ({
+  // @ts-ignore
+  return data.map(({username}) => ({
     username,
   }));
 }
 
 /// Comments data provider hook
-export function useCommentsDataset() {
+export function useOnlineDataset() {
   return useDataSource<OnlineTypes>('/api/online_get');
 }

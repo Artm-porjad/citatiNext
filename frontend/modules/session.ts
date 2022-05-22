@@ -1,4 +1,6 @@
 import { ReactNode } from 'react';
+// @ts-ignore
+import Cookies from 'js-cookie';
 
 export type MenuItem = {
   path: string;
@@ -11,6 +13,7 @@ export function safeUserMenu(menuItems: MenuItem[]): MenuItem[] {
   return [
     { path: '/signup', label: 'Sign up' },
     { path: '/signin', label: 'Sign in' },
+    { path: '/exit', label: 'Exit' },
   ];
 }
 

@@ -1,2 +1,4 @@
 .idea
 venv
+/backend/ClownEntertainment_Common.egg-info/
+/.venv/

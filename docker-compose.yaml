@@ -23,3 +23,25 @@ services:
     command: postgres
     networks:
       - next-citati
+
+#  frontend service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../system/docker/frontend/Dockerfile
+    container_name: next-citati-frontend
+    networks:
+      - next-citati
+    ports:
+      - "3000:3000"
+
+#  backend service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ../system/docker/backend/Dockerfile
+    container_name: next-citati-backend
+    networks:
+      - next-citati
+    ports:
+      - "8000:8000"

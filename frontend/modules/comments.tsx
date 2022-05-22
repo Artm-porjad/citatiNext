@@ -7,7 +7,18 @@ export type CommentsTypes = {
 
 /// Comments data adapter
 export function CommentsAdapter(data: DataSet<CommentsTypes>): CommentsTypes[] {
-  return (data.comments.map(([username, text]) => ({
+  // @ts-ignore
+  return (data.map(({username, text}) => ({
+    username,
+    text,
+  })));
+}
+
+/// Profile info data adapter
+export function ProfileInfoAdapter(data: DataSet<CommentsTypes>): CommentsTypes[] {
+  console.log(data)
+  // @ts-ignore
+  return (data.map(({username, text}) => ({
     username,
     text,
   })));
