@@ -47,3 +47,13 @@ services:
       - next-citati
     ports:
       - "8000:8000"
+
+  alembic:
+    depends_on:
+      - "postgresql"
+    build:
+      context: .
+      dockerfile: docker/alembic/Dockerfile
+    container_name: next-citati-alembic
+    networks:
+      - next-citati
