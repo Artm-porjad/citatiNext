@@ -38,7 +38,7 @@ services:
 #  backend service
   backend:
     depends_on:
-      - "postgresql"
+      - "alembic"
     build:
       context: .
       dockerfile: docker/backend/Dockerfile
