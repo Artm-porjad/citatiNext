@@ -13,3 +13,5 @@ venv:
 	source ${VENV}/bin/activate && npm install -g npm@$(NPM_VERSION)
 	source ${VENV}/bin/activate && npm install -g yarn
 
+docker_build:
+	sudo DOCKER_BUILDKIT=1 docker-compose build
