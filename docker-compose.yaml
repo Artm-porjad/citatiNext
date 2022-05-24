@@ -8,7 +8,7 @@ services:
   notifier:
     build:
       context: .
-      dockerfile: system/docker/notifier/Dockerfile
+      dockerfile: docker/notifier/Dockerfile
     container_name: next-citati-notifier
     networks:
       - next-citati
@@ -18,7 +18,7 @@ services:
     image: test/postgresql
     build:
       context: .
-      dockerfile: system/docker/postgres/Dockerfile
+      dockerfile: docker/postgres/Dockerfile
     container_name: next-citati-postgresql
     command: postgres
     networks:
@@ -28,7 +28,7 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: ../system/docker/frontend/Dockerfile
+      dockerfile: ../docker/frontend/Dockerfile
     container_name: next-citati-frontend
     networks:
       - next-citati
@@ -37,9 +37,11 @@ services:
 
 #  backend service
   backend:
+    depends_on:
+      - "postgresql"
     build:
-      context: ./backend
-      dockerfile: ../system/docker/backend/Dockerfile
+      context: .
+      dockerfile: docker/backend/Dockerfile
     container_name: next-citati-backend
     networks:
       - next-citati
