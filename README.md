@@ -1,6 +1,6 @@
 # Clowns-entertainment forum
 The forum was created for communication and discussion of various topics for community members.
-This is an new version of the project. The old version is at the [link](https://github.com/Clowns-entertainment/web) 
+This is a new version of the project and it is not completed. Old version of the project with full functionality is at the [link](https://github.com/Clowns-entertainment/web) 
 # Requirements
 docker-compose version 1.21.2
 # Installation
